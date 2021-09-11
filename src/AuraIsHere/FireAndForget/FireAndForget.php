@@ -32,25 +32,25 @@ class FireAndForget
      */
     public function get($url, $params)
     {
-        $this->fire('GET', $url, $params);
+        $this->fire('GET', $url, $params, []);
     }
 
     /**
      * @param string $url
      * @param array  $params
      */
-    public function post($url, $params)
+    public function post($url, $params, $body)
     {
-        $this->fire('POST', $url, $params);
+        $this->fire('POST', $url, $params, $body);
     }
 
     /**
      * @param string $url
      * @param array  $params
      */
-    public function put($url, $params)
+    public function put($url, $params, $body)
     {
-        $this->fire('PUT', $url, $params);
+        $this->fire('PUT', $url, $params, $body);
     }
 
     /**
@@ -59,7 +59,7 @@ class FireAndForget
      */
     public function delete($url, $params)
     {
-        $this->fire('DELETE', $url, $params);
+        $this->fire('DELETE', $url, $params, []);
     }
 
     /**
