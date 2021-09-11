@@ -69,7 +69,7 @@ class FireAndForget
      *
      * @throws SocketException
      */
-    private function fire($method, $url, $params)
+    private function fire($method, $url, $params, $body)
     {
         try {
             $url = HttpUri::createFromString($url);
@@ -81,7 +81,7 @@ class FireAndForget
         $host   = $scheme . $url->getHost();
         $port   = $url->getPort() ?: $this->getDefaultPort($url->getScheme());
 
-        $request = $this->getRequest($method, $url, $params);
+        $request = $this->getRequest($method, $url, $params, $body);
         $socket  = @fsockopen($host, $port, $errno, $errstr, $this->connectionTimeout);
 
         if (! $socket) {
@@ -109,11 +109,10 @@ class FireAndForget
      *
      * @return string
      */
-    private function getRequest($method, $url, $params)
+    private function getRequest($method, $url, $params, $body)
     {
         $queryString = $this->buildQueryString($params);
-        $headers     = $this->getHeaders($method, $url, $queryString);
-        $body        = $this->getBody($method, $queryString);
+        $headers     = $this->getHeaders($method, $url, $queryString, $body);
 
         return $headers . "\r\n" . $body;
     }
@@ -125,14 +124,14 @@ class FireAndForget
      *
      * @return string
      */
-    private function getHeaders($method, $url, $queryString)
+    private function getHeaders($method, $url, $queryString, $body)
     {
         $path = $method === 'GET' ? $url->getPath() . "?" . $queryString : $url->getPath();
 
         $headers = $method . " /" . $path . " HTTP/1.1\r\n";
         $headers .= "Host: " . $url->getHost() . "\r\n";
-        $headers .= "Content-Type: application/x-www-form-urlencoded\r\n";
-        $headers .= "Content-Length: " . strlen($queryString) . "\r\n";
+        $headers .= "Content-Type: application/json\r\n";
+        $headers .= "Content-Length: " . strlen($body) . "\r\n";
         $headers .= "Connection: Close\r\n";
 
         return $headers;
