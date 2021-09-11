@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "HipsterJazzbo\\AuraIsHere\\FireAndForget\\": "src/"
+            "HipsterJazzbo\\FireAndForget\\": "src/AuraIsHere/"
         }
     },
     "minimum-stability": "stable"
