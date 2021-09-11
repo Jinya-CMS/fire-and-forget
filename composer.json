@@ -1,5 +1,5 @@
 {
-    "name": "hipsterjazzbo/fire-and-forget",
+    "name": "jinya/fire-and-forget",
     "description": "A simple PHP library to just fire off an HTTP request and forget about it",
     "license": "MIT",
     "authors": [
