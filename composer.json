@@ -16,6 +16,9 @@
     "autoload": {
         "psr-0": {
             "HipsterJazzbo\\FireAndForget": "src/"
+        },
+        "psr-4": {
+            "HipsterJazzbo\\FireAndForget": "src/"
         }
     },
     "minimum-stability": "stable"
