@@ -18,7 +18,7 @@
             "HipsterJazzbo\\FireAndForget": "src/"
         },
         "psr-4": {
-            "HipsterJazzbo\\FireAndForget": "src/"
+            "HipsterJazzbo\\FireAndForget\\": "src/"
         }
     },
     "minimum-stability": "stable"
